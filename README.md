@@ -76,7 +76,7 @@ The Online Medicine Shop Project in JSP MySQL is a web application developed to 
   - Modules like user authentication, product management, order processing, and inventory management work together to ensure the smooth functioning of the online medicine shop application.
 
 ### Code Snippet Example:
-#### 1. User Login Servlet
+#### 1. User Login 
 ```java
 		conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/drugdatabase","root","1234");
 		if(u==2)
@@ -141,13 +141,14 @@ The Online Medicine Shop Project in JSP MySQL is a web application developed to 
 	}
 	
 ### 4. Product Listing 
-<div class="active">
+      
+        <div class="active">
 	<%@ page import="java.sql.*" %>
 	<%@ page import="javax.sql.*" %>
 	<%
 	HttpSession httpSession = request.getSession();
-    String uid=(String)httpSession.getAttribute("currentuser");
-    %>
+      String uid=(String)httpSession.getAttribute("currentuser");
+      %>
     
     <div class="filler"></div>
     
