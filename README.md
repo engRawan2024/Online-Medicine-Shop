@@ -108,4 +108,118 @@ The Online Medicine Shop Project in JSP MySQL is a web application developed to 
 		else
 			response.sendRedirect("LoginError2.html");
 	}
-...
+```
+#### 2. Add Product JSP Form
+	```java
+	try {
+		Class.forName("com.mysql.jdbc.Driver");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/drugdatabase", "root", "1234");
+		ps1 = conn.prepareStatement(query1);
+		ps1.setString(1, prid);
+		rs = ps1.executeQuery();
+		if (!rs.next()) {
+			ps2 = conn.prepareStatement(query2);
+			ps2.setString(1, prid);
+			ps2.setString(2, prname);
+			ps2.setString(3, mfname);
+			ps2.setString(4, mdate);
+			ps2.setString(5, edate);
+			ps2.setInt(6, price);
+			int i = ps2.executeUpdate();
+			ps3 = conn.prepareStatement(query3);
+			ps3.setString(1, prid);
+			ps3.setString(2, prname);
+			ps3.setString(3, guid);
+			ps3.setInt(4, quantity);
+			int j = ps3.executeUpdate();
+			response.sendRedirect("AddInventory.jsp");
+		} else {
+			response.sendRedirect("AddProductError.html");
+		}
+	} catch (Exception e) {
+		response.sendRedirect("AddProductError2.html");
+	}
+	```
+### 4. Product Listing JSP
+```jsp
+div class="active">
+	<%@ page import="java.sql.*" %>
+	<%@ page import="javax.sql.*" %>
+	<%
+	HttpSession httpSession = request.getSession();
+    String uid=(String)httpSession.getAttribute("currentuser");
+    %>
+    
+    <div class="filler"></div>
+    
+    <%
+    int flag=0;
+	ResultSet rs=null;
+	PreparedStatement ps=null;
+	java.sql.Connection conn=null;
+	String query="select p.pname,p.pid,p.manufacturer,p.mfg,p.price,i.quantity from product p,inventory i where p.pid=i.pid";
+	
+	try{
+		Class.forName("com.mysql.jdbc.Driver");
+		conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/drugdatabase","root","1234");
+		ps=conn.prepareStatement(query);
+		rs=ps.executeQuery();
+		%><div class="filler2"></div>
+				<div class="block">
+				<%
+		while(rs.next())
+		{
+			if(flag==4)
+				{
+				flag=1;
+				%></div><div class="filler2"></div><%
+				}
+			else
+			flag++;
+		%>
+			<div class="row">
+ 				<div class="column">
+    				<div class="card">
+    				<img src="images/pills.png" width=180 height=200>
+  					<h1><%=rs.getString("pname") %></h1>
+  					<p><b>ID: </b><%=rs.getString("pid") %></p>
+					<p><b>Manufacturer: </b><%=rs.getString("manufacturer") %></p>
+					<p><b>Mfg Date: </b><%=rs.getDate("mfg") %></p>
+					<p><b>Stock: </b><%=rs.getInt("quantity") %></p>
+					<p><b>Price: </b><%=rs.getInt("price") %></p>
+					<%if (rs.getInt("quantity")>0) 
+					{
+					%>
+  					<form action="PlaceOrder.jsp" method="post">
+  					<input type="number" name="orderquantity" onkeypress="return event.charCode>= 48 && event.charCode<= 57" placeholder="Enter quantity" max="<%=rs.getInt("quantity") %>" required >
+  					<input type="hidden" name="pid" value="<%=rs.getString("pid") %>">
+  					<p></p>
+  					<button>Buy</button></form></div>
+  					<%
+  					}
+  					else	
+  						{
+  						%>
+  					
+  					<button>Out Of Stock</button></div>
+  					<% 
+  						} 
+  					%>
+  				</div>
+  				<%
+  				}
+				%>
+			</div>
+		<%
+	}
+	catch(Exception e)
+	{
+		out.println("error: "+e);
+	}
+	finally {
+	    try { if (rs != null) rs.close(); } catch (Exception e) {};
+	    try { if (ps != null) ps.close(); } catch (Exception e) {};
+	    try { if (conn != null) conn.close(); } catch (Exception e) {};
+}
+	%>
+```
