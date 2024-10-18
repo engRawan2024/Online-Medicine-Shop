@@ -110,7 +110,7 @@ The Online Medicine Shop Project in JSP MySQL is a web application developed to 
 	}
 ```
 #### 2. Add Product JSP Form
-	```java
+	
 	try {
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/drugdatabase", "root", "1234");
@@ -139,9 +139,8 @@ The Online Medicine Shop Project in JSP MySQL is a web application developed to 
 	} catch (Exception e) {
 		response.sendRedirect("AddProductError2.html");
 	}
-	```
-### 4. Product Listing JSP
-```jsp
+	
+### 4. Product Listing 
 div class="active">
 	<%@ page import="java.sql.*" %>
 	<%@ page import="javax.sql.*" %>
@@ -222,4 +221,4 @@ div class="active">
 	    try { if (conn != null) conn.close(); } catch (Exception e) {};
 }
 	%>
-```
+
