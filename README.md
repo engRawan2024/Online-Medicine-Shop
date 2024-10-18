@@ -141,7 +141,7 @@ The Online Medicine Shop Project in JSP MySQL is a web application developed to 
 	}
 	
 ### 4. Product Listing 
-div class="active">
+<div class="active">
 	<%@ page import="java.sql.*" %>
 	<%@ page import="javax.sql.*" %>
 	<%
