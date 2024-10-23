@@ -13,19 +13,17 @@ The Online Medicine Shop Project in JSP MySQL is a web application developed to 
 
 4. **Vendor Homepage**: Landing page for vendors after login.
 
-5. **Buy Page**: Enables customers to make purchases.
+5. **Buy Page**: Displays available products and Enables customers to make purchases.
 
 6. **Vendor Restock Page**: Allows vendors to manage their inventory.
 
 7. **Home Page**: Main dashboard for the application.
 
-8. **Products**: Displays available products.
+8. **Add Product**: Functionality to add new products to the system.
 
-9. **Add Product**: Functionality to add new products to the system.
+9. **Purchase Medicine**: Allows customers to purchase medicines.
 
-10. **Purchase Medicine**: Allows customers to purchase medicines.
-
-11. **View Order**: Enables users to view their orders.
+10. **View Order**: Enables users to view their orders.
 
 ### System Components, Modules and Interactions
 
