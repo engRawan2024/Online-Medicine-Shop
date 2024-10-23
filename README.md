@@ -21,9 +21,7 @@ The Online Medicine Shop Project in JSP MySQL is a web application developed to 
 
 8. **Add Product**: Functionality to add new products to the system.
 
-9. **Purchase Medicine**: Allows customers to purchase medicines.
-
-10. **View Order**: Enables users to view their orders.
+9. **View Order**: Enables users to view their orders.
 
 ### System Components, Modules and Interactions
 
